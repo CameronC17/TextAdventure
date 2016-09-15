@@ -20,6 +20,8 @@ class AdventureGame {
 		this.position = [10,10];
 		this.command = null;
 		this.gold = 0;
+		this.gotKey = false;
+		this.health = 100;
 
 		this.generateMap();
 		this.getElements();
@@ -109,7 +111,7 @@ class AdventureGame {
 
 	movePlayer(direction) {
 		var attemptMove = this.map[this.position[1] + direction[1]][this.position[0] + direction[0]];
-		if (attemptMove != "w" && attemptMove != "i") {
+		if (attemptMove != "w" && attemptMove != "i" && attemptMove != "d") {
 			this.position[0] += direction[0];
 			this.position[1] += direction[1];
 			this.addText("You walk to the next destination");
@@ -122,10 +124,23 @@ class AdventureGame {
 					this.addText("You found " + goldAm + " pieces of GOLD!!! You now have " + this.gold + " pieces of shiny, shiny gold!");
 					this.map[this.position[1]][this.position[0]] = ".";
 					break;
+				case "k":
+					this.gotKey = true;
+					this.map[this.position[1]][this.position[0]] = ".";
+					this.addText("You find a key. What could this do?");
+					break;
 			}
 
 		} else {
-			this.addText("You can't move that way, it's a wall!");
+			if (attemptMove == "d" && !this.gotKey) {
+				this.addText("The door is locked shut! How can I open it?");
+			} else if (attemptMove == "d" && this.gotKey) {
+				this.position[0] += direction[0];
+				this.position[1] += direction[1];
+				this.addText("You use your shiny key to open the door");
+			} else {
+				this.addText("You can't move that way, it's a wall!");
+			}
 		}
 	}
 
