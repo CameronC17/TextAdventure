@@ -1,24 +1,36 @@
+window.addEventListener("load", function() {
+	var game = new AdventureGame();
+});
+
 class AdventureGame {
 	constructor() {
+		this.getElements();
+		this.assignListeners();
 		this.introduction();
+	}
+
+	getElements() {
+		this.button = document.getElementById("submit");
+		this.textOutput = document.getElementById("textOutput");
+		this.minimap = document.getElementById("minimap");
+	}
+
+	assignListeners() {
+		this.button.addEventListener("click", function(event) {
+			console.log(event);
+		});
+
+		this.textOutput.addEventListener("click", function(event) {
+			console.log(event);
+		});
+
+		this.minimap.addEventListener("click", function(event) {
+			console.log(event);
+		});
 	}
 
 	introduction() {
 		console.log("Welcome to the Text Adventure!");
-	}
-
-	
+	}	
 }
-
-
-
-var game = new AdventureGame();
-
-
-
-//console.log("\[\033[47m\]");
-//console.log("\033[31m this will be red \033[91m and this will be normal");
-
-
-
 

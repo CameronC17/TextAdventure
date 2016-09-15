@@ -9,7 +9,8 @@ body {
     display: inline-block; }
     body #leftSide #text {
       background-color: #000080;
-      height: 1100px; }
+      height: 1100px;
+      padding: 6px; }
   body #rightSide {
     float: right;
     width: 29.5%;
