@@ -1,11 +1,13 @@
-console.reset = function () {
-  return process.stdout.write('\033c');
-}
-
 class AdventureGame {
 	constructor() {
-		console.reset();
+		this.introduction();
 	}
+
+	introduction() {
+		console.log("Welcome to the Text Adventure!");
+	}
+
+	
 }
 
 
