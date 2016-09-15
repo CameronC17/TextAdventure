@@ -1,9 +1,10 @@
 body {
+
 	#leftSide {
 		float: left;
 		width: 70%;
 		display: inline-block;
-		#text {
+		#textOutput {
 			background-color: #000080;
 			height: 1100px;
 			padding: 6px;
@@ -20,6 +21,8 @@ body {
 		}
 
 		#input {
+			box-sizing: border-box;
+			padding: 30px;
 			color: #000;
 			background-color: yellow;
 			height: 200px;
