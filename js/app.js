@@ -79,16 +79,16 @@ class AdventureGame {
 	doCommand() {
 		switch (this.command) {
 			case "n":
-				this.movePlayer([1,0]);
+				this.movePlayer([0,-1]);
 				break;
 			case "e":
-				this.movePlayer([0,1]);
+				this.movePlayer([1,0]);
 				break;
 			case "s":
-				this.movePlayer([-1,0]);
+				this.movePlayer([0,1]);
 				break;
 			case "w":
-				this.movePlayer([0,-1]);
+				this.movePlayer([-1, 0]);
 				break;
 			default: 
 				console.log("unknown command");
