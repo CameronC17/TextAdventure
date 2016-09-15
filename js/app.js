@@ -19,6 +19,7 @@ class AdventureGame {
 		this.adventureText = [];
 		this.position = [10,10];
 		this.command = null;
+		this.gold = 0;
 
 		this.generateMap();
 		this.getElements();
@@ -29,6 +30,11 @@ class AdventureGame {
 
 	generateMap() {
 		this.map = [
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
 			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
 			["w",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","w"],
 			["w",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","w"],
@@ -48,6 +54,11 @@ class AdventureGame {
 			["w",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","i","i","i","w"],
 			["w",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","i",".",".","w"],
 			["w",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","d",".","g1000","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
+			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"],
 			["w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w","w"]
 		];
 	}
@@ -98,10 +109,21 @@ class AdventureGame {
 
 	movePlayer(direction) {
 		var attemptMove = this.map[this.position[1] + direction[1]][this.position[0] + direction[0]];
-		if (attemptMove != "w") {
+		if (attemptMove != "w" && attemptMove != "i") {
 			this.position[0] += direction[0];
 			this.position[1] += direction[1];
 			this.addText("You walk to the next destination");
+			//check what we've stood on
+			switch (this.map[this.position[1]][this.position[0]].charAt(0)) {
+				case "g":
+					var goldAm = this.map[this.position[1]][this.position[0]];
+					goldAm = goldAm.substring(1);
+					this.gold += parseInt(goldAm);
+					this.addText("You found " + goldAm + " pieces of GOLD!!! You now have " + this.gold + " pieces of shiny, shiny gold!");
+					this.map[this.position[1]][this.position[0]] = ".";
+					break;
+			}
+
 		} else {
 			this.addText("You can't move that way, it's a wall!");
 		}
@@ -142,8 +164,12 @@ class AdventureGame {
 			for (var x = -3; x <= 3; x++) {
 				if (x == 0 && y == 0)
 					buildAMap += "X";
-				else
-					buildAMap += this.map[this.position[1] + y][this.position[0] + x];
+				else {
+					if (typeof this.map[this.position[1] + y][this.position[0] + x] == 'undefined')
+						buildAMap += "w";
+					else
+						buildAMap += this.map[this.position[1] + y][this.position[0] + x].charAt(0);
+				}
 			}
 			buildAMap += "\n";
 		}

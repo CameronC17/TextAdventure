@@ -21,7 +21,8 @@ body {
       height: 400px;
       padding: 40px;
       box-sizing: border-box;
-      font-size: 2em; }
+      font-size: 2em;
+      text-align: center; }
     body #rightSide #input {
       box-sizing: border-box;
       padding: 30px;
