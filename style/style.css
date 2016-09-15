@@ -1,6 +1,25 @@
 body {
-  background-color: #fff;
-  margin: 0px;
-  font-size: 40px; }
+  color: #fff;
+  background-color: #000;
+  width: 100%;
+  font-size: 20px; }
+  body #leftSide {
+    float: left;
+    width: 70%;
+    display: inline-block; }
+    body #leftSide #text {
+      background-color: #000080;
+      height: 1100px; }
+  body #rightSide {
+    float: right;
+    width: 29.5%;
+    display: inline-block; }
+    body #rightSide #minimap {
+      background-color: green;
+      height: 400px; }
+    body #rightSide #input {
+      color: #000;
+      background-color: yellow;
+      height: 200px; }
 
 /*# sourceMappingURL=style.css.map */
