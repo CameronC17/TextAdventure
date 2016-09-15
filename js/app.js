@@ -60,14 +60,20 @@ class AdventureGame {
 	}
 
 	gameLogic() {
-		this.checkCommand();
+		this.getCommand();
+		if (this.command != null) {
+			this.
+		}
 
 		this.clearCommand();
 	}
 
-	checkCommand() {
+	getCommand() {
 		this.command = this.commandBox.value;
-		console.log(this.command);
+	}
+
+	clearCommand() {
+		this.commandBox.value = "";
 	}
 
 	introduction() {
