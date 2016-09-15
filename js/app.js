@@ -72,6 +72,7 @@ class AdventureGame {
 			this.doCommand();
 		}
 
+		this.displayText();
 		this.clearCommand();
 	}
 
@@ -96,9 +97,7 @@ class AdventureGame {
 	}
 
 	movePlayer(direction) {
-
-		console.log(this.map[this.position[1] + direction[1]][this.position[0] + direction[0]]);
-		var attemptMove = this.map[this.position[1] + direction[1],this.position[0] + direction[0]];
+		var attemptMove = this.map[this.position[1] + direction[1]][this.position[0] + direction[0]];
 		if (attemptMove != "w") {
 			this.position[0] += direction[0];
 			this.position[1] += direction[1];
@@ -125,12 +124,30 @@ class AdventureGame {
 	}
 
 	displayText() {
-		//this.textOutput.innerText = "WEVE GOT TEXT\nhelo";
+		//text line
 		var buildAString = "";
 		for (var i = this.adventureText.length - 1; i >= 0; i--) {
 			buildAString += this.adventureText[i] + "\n";
 			//buildAString += "\n";
 		}
 		this.textOutput.innerText = buildAString;
+
+		//map text
+		this.minimap.innerText = this.displayMap();
 	}
+
+	displayMap() {
+		var buildAMap = "";
+		for (var y = -3; y <= 3; y++) {
+			for (var x = -3; x <= 3; x++) {
+				if (x == 0 && y == 0)
+					buildAMap += "X";
+				else
+					buildAMap += this.map[this.position[1] + y][this.position[0] + x];
+			}
+			buildAMap += "\n";
+		}
+		return buildAMap;
+	}
+
 }
