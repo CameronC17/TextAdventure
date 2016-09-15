@@ -3,7 +3,7 @@ window.addEventListener("load", function() {
 });
 //map numbers
 // 0- free space
-// 1- 
+// 1- gold
 // 2- 
 // 3- 
 // 4- 
@@ -14,7 +14,8 @@ class AdventureGame {
 	constructor() {
 		//setup variables
 		this.adventureText = [];
-		this.position = [0,0];
+		this.position = [10,10];
+		this.command = null;
 
 		this.generateMap();
 		this.getElements();
@@ -48,16 +49,25 @@ class AdventureGame {
 		this.button = document.getElementById("submit");
 		this.textOutput = document.getElementById("textOutput");
 		this.minimap = document.getElementById("minimap");
+		this.commandBox = document.getElementById("userChoice");
 	}
 
 	assignListeners() {
 		this.button.addEventListener("click", function(event) {
-			gameLogic();
-		});
+			event.preventDefault();
+			this.gameLogic();
+		}.bind(this));
 	}
 
 	gameLogic() {
+		this.checkCommand();
 
+		this.clearCommand();
+	}
+
+	checkCommand() {
+		this.command = this.commandBox.value;
+		console.log(this.command);
 	}
 
 	introduction() {
