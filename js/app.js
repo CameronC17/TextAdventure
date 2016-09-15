@@ -69,10 +69,43 @@ class AdventureGame {
 	gameLogic() {
 		this.getCommand();
 		if (this.command != null) {
-			this.
+			this.doCommand();
 		}
 
 		this.clearCommand();
+	}
+
+	doCommand() {
+		switch (this.command) {
+			case "n":
+				this.movePlayer([1,0]);
+				break;
+			case "e":
+				this.movePlayer([0,1]);
+				break;
+			case "s":
+				this.movePlayer([-1,0]);
+				break;
+			case "w":
+				this.movePlayer([0,-1]);
+				break;
+			default: 
+				console.log("unknown command");
+				break;
+		}
+	}
+
+	movePlayer(direction) {
+
+		console.log(this.map[this.position[1] + direction[1]][this.position[0] + direction[0]]);
+		var attemptMove = this.map[this.position[1] + direction[1],this.position[0] + direction[0]];
+		if (attemptMove != "w") {
+			this.position[0] += direction[0];
+			this.position[1] += direction[1];
+			this.addText("You walk to the next destination");
+		} else {
+			this.addText("You can't move that way, it's a wall!");
+		}
 	}
 
 	getCommand() {
